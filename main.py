@@ -20,3 +20,4 @@ while len(p) != 0:
     point.longitude = p.pop()
     nodeTable.append(point)
 print(nodeTable[0].latitude)
+print(nodeTable[0].longitude)
