@@ -6,13 +6,19 @@ class Node:
     longitude = 0
     name = ""
 
-    def __init__(self, name=0, latitude=0, longitude=0, distance=0,):
+    def __init__(self, name=0, latitude=0, longitude=0,):
+        """
+
+        :param name: nom du neud
+        :param latitude:
+        :param longitude:
+
+        """
         self.latitude = latitude
         self.longitude = longitude
-        self.distance = distance
         self.name = name
 
-    def creat_rand(self,name):
+    def creat_rand(self,name):# fonction qui créé aleatoirement un neud
         self.name=name
         self.latitude=random.randint(0,100)
         self.longitude = random.randint(0, 100)
