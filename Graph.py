@@ -30,5 +30,24 @@ class Graph:
                             self.network[nodeA.name][nodeB.name] = my_road
                             self.network[nodeB.name][nodeA.name] = my_road
 
+        for nodeA in self.node:# on verifie que aucun noeud n'est isolé
+            isalone = True
+            for nodeB in self.node:
+                if self.network[nodeA.name][nodeB.name]!=0:
+                    isalone=False
+            if isalone:# si un noeud est isolé on le relie a un noeud random different de lui meme
+                rnd = random.randint(0, nb_node)
+                while rnd == nodeA:
+                    rnd = random.randint(0, nb_node)
+                nodeB = self.node[rnd]
+                lenght = round(math.sqrt((nodeA.latitude - nodeB.latitude) ** 2 + (
+                        nodeA.longitude - nodeB.longitude) ** 2))  # calcule de la distance entre les routes
+                my_road = road.Road()
+                my_road.create_rand(str(nodeA.name) + " to" + str(nodeB.name), lenght)
+                self.network[nodeA.name][nodeB.name] = my_road
+                self.network[nodeB.name][nodeA.name] = my_road
+
+
+
 
 
