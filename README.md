@@ -1,2 +1,0 @@
-# Sonification
-ISEN Project Sonification
