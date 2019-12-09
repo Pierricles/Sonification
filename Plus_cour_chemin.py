@@ -45,7 +45,11 @@ def plus_court(graphe, etape, fin, visites, dist, pere, depart):
     visites.append(etape)
     # on cherche le sommet *non visité* le plus proche du départ
     non_visites = dict((s, dist.get(s, float('inf'))) for s in graphe if s not in visites)
+    if len(non_visites)==0:
+        return False,False
     noeud_plus_proche = min(non_visites, key=non_visites.get)
+    if non_visites[noeud_plus_proche]==float('inf'):
+        return False, False
     # on applique récursivement en prenant comme nouvelle étape le sommet le plus proche
     return plus_court(graphe, noeud_plus_proche, fin, visites, dist, pere, depart)
 

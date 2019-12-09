@@ -2,7 +2,7 @@ import random
 
 class Road:
 
-    def __init__(self, maxspeed=0, name=0, trafficjamssize=0,lenght=0,  trafficjamsspeed=0, accident=0, winding=0, toll=0, wild=0, stop=0, tunnel=0, bridge=0,montaine=0):
+    def __init__(self,start=0,end=0, maxspeed=0, name=0, trafficjamssize=0,lenght=0,  trafficjamsspeed=0, accident=0, winding=0, toll=0, wild=0, stop=0, tunnel=0, bridge=0,montaine=0):
         """
 
         :param maxspeed: vitesse max de la route
@@ -19,6 +19,8 @@ class Road:
         :param bridge: nb de pont
         :param montaine: altitude de la route
         """
+        self.start=start
+        self.end=end
         self.length=lenght
         self.maxSpeed = maxspeed
         self.trafficJamsSize = trafficjamssize
@@ -37,7 +39,9 @@ class Road:
         self.montaine=montaine
 
 
-    def create_rand(self,name,lenght): # fonction qui  créé aleatoirement une route
+    def create_rand(self,name,lenght,start,end): # fonction qui  créé aleatoirement une route
+        self.start=start
+        self.end=end
         self.name = name
         self.maxSpeed = random.randint(0, 200)
         if lenght==0:
