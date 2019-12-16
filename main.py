@@ -6,7 +6,7 @@ import road
 import Graph
 import Plus_cour_chemin as Dj
 from Yen import YenKSP
-from k_shortest import k_shortest_paths
+
 
 
 def find_fastest(my_graph, debut, fin):
@@ -31,7 +31,7 @@ def find_min(All_way):
         if i[2] < min[2] and i[3]:
             min = deepcopy(i)
     min[3] = False
-    return i
+    return min
 
 
 def isin(All_way, way):
@@ -45,7 +45,15 @@ All_way = []
 my_graph.create_rand(100)
 debut = 0
 fin = 9
-lenght,path=YenKSP(my_graph, debut, fin,K=10)
+path=YenKSP(my_graph, debut, fin,K=10)
+path_all_road=[]
+for j in path:
+    path_roade = []
+    for i in range(len(j)):
+        if j[i].name != fin:
+            path_roade.append(my_graph.network[j[i].name][j[i + 1].name])
+    path_all_road.append(path_roade)
+
 '''
 i = 0
 a, best, size = find_fastest(my_graph, debut, fin)
@@ -76,7 +84,7 @@ else:
 '''
 fichier = open("data_way.txt", "w")
 
-for i in All_way:
+for i in path_all_road:
     total_length = 0
     mean_speed = 0
     total_trafficJamsSize = 0
@@ -89,7 +97,7 @@ for i in All_way:
     total_tunnel = 0
     total_bridge = 0
     mean_montaine = 0
-    for j in i[1]:
+    for j in i:
         total_length += j.length
         mean_speed += j.maxSpeed * j.length
         total_trafficJamsSize += j.trafficJamsSize
@@ -102,7 +110,7 @@ for i in All_way:
         total_bridge += j.tunnel
         mean_montaine += j.montaine * j.length
     mean_speed = mean_speed / total_length
-    mean_trafficJamsSpeed = mean_trafficJamsSpeed / total_trafficJamsSize
+    mean_trafficJamsSpeed = mean_trafficJamsSpeed / (total_trafficJamsSize+1)
     mean_winding = mean_winding / total_length
     mean_montaine = mean_montaine / total_length
     fichier.write(

@@ -27,7 +27,7 @@ class Graph:
                 if nodeA!=nodeB:
                     #if self.network[nodeA.name][nodeB.name]==0:# check si elles sont deja relié
                     if not self.network[nodeA.name].get(nodeB.name,False) :  # check si elles sont deja relié
-                        if random.randint(0,100)>20:
+                        if random.randint(0,100)>80:
                             lenght = round(math.sqrt((nodeA.latitude - nodeB.latitude) ** 2 + (
                                         nodeA.longitude - nodeB.longitude) ** 2))  # calcule de la distance entre les routes
                             my_road = road.Road()

@@ -35,7 +35,10 @@ def YenKSP(my_graph, source, sink, K):
             for p in a:
                 isroot_path=True
                 for j in range(0,i):
-                    if root_path[j]!=p[j]:
+
+                    if j>=len(p):
+                        isroot_path = False
+                    elif root_path[j]!=p[j]:
                         isroot_path=False
                 if isroot_path and p[i].name!=sink:
                     if my_graph.network[p[i].name].get(p[i + 1].name,False):
