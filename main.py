@@ -5,6 +5,8 @@ import node
 import road
 import Graph
 import Plus_cour_chemin as Dj
+from Yen import YenKSP
+from k_shortest import k_shortest_paths
 
 
 def find_fastest(my_graph, debut, fin):
@@ -43,7 +45,8 @@ All_way = []
 my_graph.create_rand(100)
 debut = 0
 fin = 9
-
+lenght,path=YenKSP(my_graph, debut, fin,K=10)
+'''
 i = 0
 a, best, size = find_fastest(my_graph, debut, fin)
 if a != False:
@@ -70,7 +73,7 @@ if a != False:
 
 else:
     print("no way")
-
+'''
 fichier = open("data_way.txt", "w")
 
 for i in All_way:

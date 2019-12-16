@@ -27,7 +27,10 @@ def plus_court(graphe, etape, fin, visites, dist, pere, depart):
     """
     # si on arrive à la fin, on affiche la distance et les peres
     if etape == fin:
-        return dist[fin], affiche_peres(pere, depart, fin, [])
+        if len(dist)==0:
+            return 0, affiche_peres(pere, depart, fin, [])
+        else:
+            return dist[fin], affiche_peres(pere, depart, fin, [])
     # si c'est la première visite, c'est que l'étape actuelle est le départ : on met dist[etape] à 0
     if len(visites) == 0: dist[etape] = 0
     # on commence à tester les voisins non visités
